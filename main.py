@@ -26,7 +26,25 @@ def merge_lists(list_1, list_2) -> list:
     - Both lists are unsorted
     - Both lists can have missing values (for ex list_2 has missing id=2)
     """
-    # return list_3
+
+    student_ids = {}
+
+    for obj in list_1:
+        student_ids[obj['id']] = obj
+
+    for obj in list_2:
+
+        if obj['id'] in student_ids:
+            student_ids[obj['id']].update(obj)
+
+        else:
+            student_ids[obj['id']] = obj
+
+
+    output = list(student_ids.values())
+
+
+    return output
 
 
 list_3 = merge_lists(list_1, list_2)
